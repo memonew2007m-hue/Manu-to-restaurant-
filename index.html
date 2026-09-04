@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منيو مطعم سمسمة الرقمي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#D4AF37',
+                        goldHover: '#AA820A',
+                        darkBg: '#121212',
+                        cardBg: '#1E1E1E',
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #121212; color: #E5E7EB; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="pb-24">
+
+    <header class="relative bg-gradient-to-b from-black via-cardBg to-darkBg px-4 pt-8 pb-6 text-center border-b border-gold/20">
+        <div class="w-20 h-20 mx-auto mb-3 rounded-full border-2 border-gold flex items-center justify-center bg-black shadow-lg shadow-gold/10">
+            <i class="fa-solid font-bold text-3xl text-gold fa-utensils"></i>
+        </div>
+        <h1 class="text-3xl font-extrabold text-white tracking-wide">مطعم <span class="text-gold">سمسمة</span></h1>
+        <p class="text-xs text-gray-400 mt-2 max-w-xs mx-auto">أطيب المأكولات النواشف والمشويات بالطعم الأصيل</p>
+        
+        <div class="mt-5 max-w-md mx-auto relative">
+            <input type="text" id="searchInput" onkeyup="filterMenu()" placeholder="إبحث عن وجبتك المفضلة..." 
+                class="w-full bg-cardBg border border-gold/30 rounded-full py-2.5 pr-10 pl-4 text-sm text-white focus:outline-none focus:border-gold transition">
+            <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-3.5 text-gold/60 text-sm"></i>
+        </div>
+    </header>
+
+    <nav class="sticky top-0 z-30 bg-darkBg/95 backdrop-blur-md border-b border-gray-800 py-3 shadow-md">
+        <div class="flex overflow-x-auto hide-scrollbar space-x-2 space-x-reverse px-4 max-w-md mx-auto text-sm font-semibold">
+            <button onclick="scrollToSection('grills')" class="px-4 py-1.5 rounded-full bg-gold text-black whitespace-nowrap active-tab">🔥 المشويات</button>
+            <button onclick="scrollToSection('fastfood')" class="px-4 py-1.5 rounded-full bg-cardBg text-gray-300 border border-gray-700 whitespace-nowrap">🍔 الأكلات السريعة</button>
+            <button onclick="scrollToSection('appetizers')" class="px-4 py-1.5 rounded-full bg-cardBg text-gray-300 border border-gray-700 whitespace-nowrap">🥗 المقبلات</button>
+        </div>
+    </nav>
+
+    <main class="max-w-md mx-auto px-4 mt-6 space-y-8">
+
+        <section id="grills" class="menu-section">
+            <h2 class="text-xl font-bold text-gold border-r-4 border-gold pr-2 mb-4">قسم المشويات</h2>
+            <div class="grid grid-cols-2 gap-3">
+                
+                <div onclick="openModal('كباب لحم عراقي', '1/2 كيلو كباب غنم بلدي مع مقبلات وسلطات وخبز حار', '16,000 د.ع', 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=500&q=80', 'الأكثر طلباً')" 
+                    class="menu-item bg-cardBg rounded-xl overflow-hidden border border-gray-800 hover:border-gold/50 transition cursor-pointer relative flex flex-col justify-between">
+                    <span class="absolute top-2 right-2 bg-gold text-black text-[10px] font-bold px-2 py-0.5 rounded-full z-10 shadow">الأكثر طلباً</span>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=500&q=80" alt="كباب" class="w-full h-28 object-cover">
+                        <div class="p-2.5">
+                            <h3 class="font-bold text-sm text-white line-clamp-1">كباب لحم</h3>
+                            <p class="text-[11px] text-gray-400 mt-1 line-clamp-2">1/2 كيلو مع مقبلات وسلطات</p>
+                        </div>
+                    </div>
+                    <div class="px-2.5 pb-2.5 pt-1 flex justify-between items-center border-t border-gray-800/60 mt-2">
+                        <span class="text-gold font-bold text-xs">16,000 د.ع</span>
+                        <i class="fa-solid fa-circle-plus text-gold text-base"></i>
+                    </div>
+                </div>
+
+                <div onclick="openModal('مشكل مشويات سمسمة', '1 كيلو مشكل (كباب، تكة لحم، شيش طاووق) مع جميع المرفقات', '32,000 د.ع', 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=80', 'توصية الشيف')" 
+                    class="menu-item bg-cardBg rounded-xl overflow-hidden border border-gray-800 hover:border-gold/50 transition cursor-pointer relative flex flex-col justify-between">
+                    <span class="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10 shadow">توصية الشيف</span>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=80" alt="مشكل مشويات" class="w-full h-28 object-cover">
+                        <div class="p-2.5">
+                            <h3 class="font-bold text-sm text-white line-clamp-1">مشكل مشويات</h3>
+                            <p class="text-[11px] text-gray-400 mt-1 line-clamp-2">1 كيلو كباب وتكة وشيش طاووق</p>
+                        </div>
+                    </div>
+                    <div class="px-2.5 pb-2.5 pt-1 flex justify-between items-center border-t border-gray-800/60 mt-2">
+                        <span class="text-gold font-bold text-xs">32,000 د.ع</span>
+                        <i class="fa-solid fa-circle-plus text-gold text-base"></i>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="fastfood" class="menu-section">
+            <h2 class="text-xl font-bold text-gold border-r-4 border-gold pr-2 mb-4">الأكلات السريعة</h2>
+            <div class="grid grid-cols-2 gap-3">
+                
+                <div onclick="openModal('برجر لحم كلاسيك', 'شريحة لحم بقر مع الجبن الذهبي، الخس، الصوص الخاص، وبطاطس', '7,000 د.ع', 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80', '')" 
+                    class="menu-item bg-cardBg rounded-xl overflow-hidden border border-gray-800 hover:border-gold/50 transition cursor-pointer flex flex-col justify-between">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" alt="برجر" class="w-full h-28 object-cover">
+                        <div class="p-2.5">
+                            <h3 class="font-bold text-sm text-white line-clamp-1">برجر لحم</h3>
+                            <p class="text-[11px] text-gray-400 mt-1 line-clamp-2">شريحة لحم مع الجبن والصوص الخاص</p>
+                        </div>
+                    </div>
+                    <div class="px-2.5 pb-2.5 pt-1 flex justify-between items-center border-t border-gray-800/60 mt-2">
+                        <span class="text-gold font-bold text-xs">7,000 د.ع</span>
+                        <i class="fa-solid fa-circle-plus text-gold text-base"></i>
+                    </div>
+                </div>
+
+                <div onclick="openModal('بيتزا بيتيروني', 'بيتزا بحجم عائلي مغطاة بجبن الموزاريلا وشرائح الببروني', '10,000 د.ع', 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=80', '')" 
+                    class="menu-item bg-cardBg rounded-xl overflow-hidden border border-gray-800 hover:border-gold/50 transition cursor-pointer flex flex-col justify-between">
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=80" alt="بيتزا" class="w-full h-28 object-cover">
+                        <div class="p-2.5">
+                            <h3 class="font-bold text-sm text-white line-clamp-1">بيتزا ببروني</h3>
+                            <p class="text-[11px] text-gray-400 mt-1 line-clamp-2">جبن موزاريلا وشرائح الببروني</p>
+                        </div>
+                    </div>
+                    <div class="px-2.5 pb-2.5 pt-1 flex justify-between items-center border-t border-gray-800/60 mt-2">
+                        <span class="text-gold font-bold text-xs">10,000 د.ع</span>
+                        <i class="fa-solid fa-circle-plus text-gold text-base"></i>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="appetizers" class="menu-section">
+            <h2 class="text-xl font-bold text-gold border-r-4 border-gold pr-2 mb-4">المقبلات</h2>
+            
+            <h3 class="text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wider">مقبلات باردة</h3>
+            <div class="space-y-2 mb-4">
+                <div onclick="openModal('حمص بالطحينة', 'حمص ناعم بزيت الزيتون البكر', 'صغير: 2,000 د.ع | كبير: 3,500 د.ع', 'https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=500&q=80', '')"
+                    class="menu-item bg-cardBg p-3 rounded-lg flex items-center justify-between border border-gray-800 cursor-pointer">
+                    <div>
+                        <h4 class="font-bold text-sm text-white">حمص بالطحينة</h4>
+                        <p class="text-[11px] text-gray-400">حجم صغير / كبير</p>
+                    </div>
+                    <span class="text-gold font-bold text-xs">2,000 - 3,500 د.ع</span>
+                </div>
+            </div>
+
+            <h3 class="text-xs font-semibold text-gray-400 mb-2 uppercase tracking-wider">مقبلات ساخنة</h3>
+            <div class="space-y-2">
+                <div onclick="openModal('كبة موصلية', 'كبة محشوة باللحم والمكسرات مقلية ومقرمشة', '3,000 د.ع', 'https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=500&q=80', '')"
+                    class="menu-item bg-cardBg p-3 rounded-lg flex items-center justify-between border border-gray-800 cursor-pointer">
+                    <div>
+                        <h4 class="font-bold text-sm text-white">كبة مقلية (4 قطع)</h4>
+                        <p class="text-[11px] text-gray-400">محشوة باللحم والمكسرات</p>
+                    </div>
+                    <span class="text-gold font-bold text-xs">3,000 د.ع</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-cardBg mt-12 border-t border-gray-800 px-4 py-8 text-center text-xs text-gray-400">
+        <div class="max-w-md mx-auto space-y-6">
+            
+            <div class="bg-darkBg p-4 rounded-xl border border-gray-800">
+                <h4 class="text-gold font-bold text-sm mb-2"><i class="fa-regular fa-clock ml-1"></i> أوقات العمل اليومية</h4>
+                <p>طيلة أيام الأسبوع (من السبت إلى الأحد)</p>
+                <p class="text-white font-semibold mt-1">7:00 صباحاً - 12:00 ليلاً</p>
+            </div>
+
+            <div class="space-y-2">
+                <p><i class="fa-solid fa-location-dot text-gold ml-1"></i> العراق - الديوانية</p>
+                <a href="https://maps.google.com" target="_blank" class="inline-block text-gold underline text-[11px]">عرض موقع المطعم على الخريطة</a>
+            </div>
+
+            <div class="flex justify-center space-x-4 space-x-reverse text-lg">
+                <a href="#" class="w-9 h-9 rounded-full bg-darkBg flex items-center justify-center text-gold border border-gray-800"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="w-9 h-9 rounded-full bg-darkBg flex items-center justify-center text-gold border border-gray-800"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+
+            <p class="text-[10px] text-gray-600">جميع الحقوق محفوظة © مطعم سمسمة 2026</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/9647723681360?text=السلام%20علكم%20أرغب%20في%20الطلب%20من%20المنيو" target="_blank" 
+       class="fixed bottom-5 left-5 z-40 bg-green-600 text-white px-4 py-2.5 rounded-full font-bold shadow-lg flex items-center space-x-2 space-x-reverse hover:bg-green-500 transition">
+        <i class="fa-brands fa-whatsapp text-xl"></i>
+        <span class="text-xs">اطلب الآن</span>
+    </a>
+
+    <button id="backToTop" onclick="scrollToTop()" class="hidden fixed bottom-5 right-5 z-40 bg-cardBg border border-gold/40 text-gold w-10 h-10 rounded-full shadow-lg flex items-center justify-center">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <div id="itemModal" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-cardBg border border-gold/30 rounded-2xl max-w-sm w-full overflow-hidden relative shadow-2xl animate-fade-in">
+            <button onclick="closeModal()" class="absolute top-3 left-3 bg-black/60 text-white w-8 h-8 rounded-full flex items-center justify-center z-10">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="modalImg" src="" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <span id="modalBadge" class="bg-gold text-black text-[10px] font-bold px-2 py-0.5 rounded-full mb-2 inline-block hidden"></span>
+                <h3 id="modalTitle" class="text-lg font-bold text-white"></h3>
+                <p id="modalDesc" class="text-xs text-gray-300 mt-2 leading-relaxed"></p>
+                <div class="mt-4 flex justify-between items-center pt-3 border-t border-gray-800">
+                    <span id="modalPrice" class="text-gold font-bold text-base"></span>
+                    <a id="modalOrderBtn" href="#" target="_blank" class="bg-gold hover:bg-goldHover text-black text-xs font-bold px-4 py-2 rounded-lg transition">طلب عبر واتساب</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth Scroll
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/Hide Back to Top button
+        window.onscroll = function() {
+            const btn = document.getElementById("backToTop");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btn.classList.remove("hidden");
+            } else {
+                btn.classList.add("hidden");
+            }
+        };
+
+        // Live Search Filter
+        function filterMenu() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let items = document.getElementsByClassName('menu-item');
+
+            for (let i = 0; i < items.length; i++) {
+                let text = items[i].innerText.toLowerCase();
+                if (text.includes(input)) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+
+        // Modal Logic
+        function openModal(title, desc, price, img, badge) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalImg').src = img;
+            
+            const badgeEl = document.getElementById('modalBadge');
+            if(badge) {
+                badgeEl.innerText = badge;
+                badgeEl.classList.remove('hidden');
+            } else {
+                badgeEl.classList.add('hidden');
+            }
+
+            const waMsg = encodeURIComponent(`السلام عليكم، أرغب في طلب: ${title}`);
+            document.getElementById('modalOrderBtn').href = `https://wa.me/9647723681360?text=${waMsg}`;
+
+            document.getElementById('itemModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('itemModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
